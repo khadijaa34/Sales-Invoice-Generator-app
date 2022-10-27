@@ -1,14 +1,15 @@
 package View;
 
 
+import Model.Invoice;
+import Model.InvoiceApp;
+import Model.Items;
+import Model.Items;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import Model.InvoiceApp;
-import Model.Invoice;
 import static Model.InvoiceApp.LoadData;
-import Model.Items;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import java.util.logging.Logger;
  */
 public class InvoiceGUI extends javax.swing.JFrame {
          ArrayList<Invoice> data = new ArrayList<Invoice>();
+         ArrayList<Items> dataItems = new ArrayList<Items>();
 
     /**
      * Creates new form InvoiceGUI
@@ -34,7 +36,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     public InvoiceGUI() {
         initComponents();
         setLocation(640,100);
-        setSize(955,740);
+        setSize(955,760);
     }
 
     /**
@@ -86,7 +88,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         area = new javax.swing.JTable();
@@ -109,6 +110,20 @@ public class InvoiceGUI extends javax.swing.JFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 13), new java.awt.Dimension(0, 13), new java.awt.Dimension(32767, 13));
         InvoNo = new javax.swing.JTextField();
         Invototal = new javax.swing.JTextField();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        ItemNumber = new javax.swing.JTextField();
+        ItemName = new javax.swing.JTextField();
+        ItemPrice = new javax.swing.JTextField();
+        ItemCount = new javax.swing.JTextField();
+        ItemTotal = new javax.swing.JTextField();
+        DeleteItemBtn = new javax.swing.JButton();
+        createitembtn = new javax.swing.JButton();
+        jLabel51 = new javax.swing.JLabel();
 
         jLabel5.setText("Invoice Number:");
 
@@ -236,11 +251,6 @@ public class InvoiceGUI extends javax.swing.JFrame {
         setForeground(new java.awt.Color(0, 153, 153));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setText("Invoices Table");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 170, 112, 22);
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel2.setText("Invoice Sales Generator App");
         getContentPane().add(jLabel2);
@@ -277,7 +287,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(newInvobtn);
-        newInvobtn.setBounds(20, 600, 183, 31);
+        newInvobtn.setBounds(30, 360, 183, 31);
 
         Deletebtn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         Deletebtn.setText("Delete Invoice");
@@ -287,7 +297,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Deletebtn);
-        Deletebtn.setBounds(260, 600, 143, 31);
+        Deletebtn.setBounds(270, 360, 143, 31);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Invoice Date");
@@ -339,7 +349,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Cancelbtn);
-        Cancelbtn.setBounds(740, 600, 90, 31);
+        Cancelbtn.setBounds(780, 670, 90, 31);
 
         jLabel32.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dejaa\\Downloads\\3amoo1.jpg")); // NOI18N
         jLabel32.setText("jLabel32");
@@ -354,7 +364,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Savebtn1);
-        Savebtn1.setBounds(599, 600, 90, 31);
+        Savebtn1.setBounds(640, 670, 90, 31);
 
         loadfilebtn.setText("Load File");
         loadfilebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -385,6 +395,77 @@ public class InvoiceGUI extends javax.swing.JFrame {
         InvoNo.setBounds(600, 200, 290, 22);
         getContentPane().add(Invototal);
         Invototal.setBounds(600, 320, 290, 22);
+
+        jLabel52.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel52.setText("Invoices Table");
+        getContentPane().add(jLabel52);
+        jLabel52.setBounds(10, 170, 112, 22);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("Item Number");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 440, 110, 22);
+
+        jLabel47.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel47.setText("Item Name");
+        getContentPane().add(jLabel47);
+        jLabel47.setBounds(20, 470, 86, 22);
+
+        jLabel48.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel48.setText("Item Price");
+        getContentPane().add(jLabel48);
+        jLabel48.setBounds(20, 500, 80, 22);
+
+        jLabel49.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel49.setText("Item Count");
+        getContentPane().add(jLabel49);
+        jLabel49.setBounds(20, 530, 90, 22);
+
+        jLabel50.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel50.setText("Item Total");
+        getContentPane().add(jLabel50);
+        jLabel50.setBounds(20, 560, 82, 22);
+        getContentPane().add(ItemNumber);
+        ItemNumber.setBounds(150, 440, 230, 22);
+        getContentPane().add(ItemName);
+        ItemName.setBounds(150, 470, 230, 22);
+        getContentPane().add(ItemPrice);
+        ItemPrice.setBounds(150, 500, 230, 22);
+
+        ItemCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemCountActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ItemCount);
+        ItemCount.setBounds(150, 530, 230, 22);
+        getContentPane().add(ItemTotal);
+        ItemTotal.setBounds(150, 560, 230, 22);
+
+        DeleteItemBtn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        DeleteItemBtn.setText("Delete Item");
+        DeleteItemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteItemBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(DeleteItemBtn);
+        DeleteItemBtn.setBounds(690, 540, 140, 30);
+
+        createitembtn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        createitembtn.setText("Create Item");
+        createitembtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createitembtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(createitembtn);
+        createitembtn.setBounds(510, 540, 140, 31);
+
+        jLabel51.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        jLabel51.setText("To add a new item, please fill out the above information ");
+        getContentPane().add(jLabel51);
+        jLabel51.setBounds(10, 610, 380, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -528,7 +609,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private void savefilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savefilebtnActionPerformed
        // try {
             // TODO add your handling code here:
-           InvoiceApp.SaveData(data, "C:\\Users\\Dejaa\\Desktop\\head1.csv");
+           InvoiceApp.SaveData(data, "C:\\Users\\Dejaa\\Desktop\\InvoiceHeader.csv");
            JOptionPane.showMessageDialog(this, "File Saved Successfully !");  
         //}
 //        catch (IOException ex) {
@@ -563,11 +644,7 @@ public class InvoiceGUI extends javax.swing.JFrame {
                          break;
                 }                                       
         }
-            
-            // we will loop on the index where if the index is 2 which is saleh's data. it will
-                // go to the file and see the data of saleh and get his items details. all of this is done
-                // just because i couldnt access total except this way. as total is in the data.
-                
+         
             if(data.get(index) != null && data.get(index).getItems() != null &&  data.get(index).getItems().size()>0 && itemFound){
                 for(int j=0; j<data.get(index).getItems().size(); j++){ 
                     int itemTotal = Integer.parseInt(data.get(index).getItems().get(j).getPrice()) * Integer.parseInt(data.get(index).getItems().get(j).getCount());
@@ -583,8 +660,68 @@ public class InvoiceGUI extends javax.swing.JFrame {
 
     private void InvoNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoNoActionPerformed
         // TODO add your handling code here:
-        InvoNo.setVisible(false);   
+//        InvoNo.setVisible(false);   
     }//GEN-LAST:event_InvoNoActionPerformed
+
+    private void ItemCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemCountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemCountActionPerformed
+
+    private void createitembtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createitembtnActionPerformed
+        // TODO add your handling code here:
+        if(ItemNumber.getText().equals("") || ItemName.getText().equals("") || ItemPrice.getText().equals("") || ItemCount.getText().equals("") || ItemTotal.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Please Enter All The Missing Data!");
+        }else{
+        DefaultTableModel ItemsModel = (DefaultTableModel) area2.getModel();
+        if(data!=null && data.size()>0){
+        
+            Items item = new Items(Integer.parseInt(ItemNumber.getText()),ItemName.getText(), ItemPrice.getText(), ItemCount.getText(), ItemTotal.getText());
+            dataItems.add(item);  
+        }
+        
+        ItemsModel.addRow( new Object[] {ItemNumber.getText(), ItemName.getText(), ItemPrice.getText(), ItemCount.getText(), ItemTotal.getText()});
+        
+        JOptionPane.showMessageDialog(this, "Items Data Added Successfully!");
+        ItemNumber.setText("");
+        ItemName.setText("");
+        ItemPrice.setText("");
+        ItemCount.setText("");
+        ItemTotal.setText("");
+        
+        
+   
+        
+        }
+    }//GEN-LAST:event_createitembtnActionPerformed
+
+    private void DeleteItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemBtnActionPerformed
+        // TODO add your handling code here:
+    DefaultTableModel ItemsModel = (DefaultTableModel) area2.getModel();
+    if(area2.getSelectedRowCount() == 1){
+    ItemsModel.removeRow(area2.getSelectedRow());
+                        JOptionPane.showMessageDialog(this, "Item Data Removed Successfully!");
+
+    
+    if(dataItems != null && dataItems.size() >0 ){
+        for(int i =0; i< dataItems.size(); i++){
+            if(dataItems.get(i) != null && dataItems.get(i).getId() == Integer.parseInt(ItemNumber.getText())){
+                dataItems.remove(i);
+            }
+        }
+    }
+        ItemNumber.setText("");
+        ItemName.setText("");
+        ItemPrice.setText("");
+        ItemCount.setText("");
+        ItemTotal.setText("");
+    } else {
+    if(area2.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "Table is Empty!");
+    } else {
+        JOptionPane.showMessageDialog(this, "Please Select Only One Row To Be Deleted!");
+            }
+        }    
+    }//GEN-LAST:event_DeleteItemBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -624,15 +761,22 @@ public class InvoiceGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelbtn;
     private javax.swing.JTextField CustName;
+    private javax.swing.JButton DeleteItemBtn;
     private javax.swing.JButton Deletebtn;
     private javax.swing.JTextField InvoDate;
     private javax.swing.JTextField InvoNo;
     private javax.swing.JTextField Invototal;
     private javax.swing.JTextField Invototal1;
     private javax.swing.JTextField Invototal2;
+    private javax.swing.JTextField ItemCount;
+    private javax.swing.JTextField ItemName;
+    private javax.swing.JTextField ItemNumber;
+    private javax.swing.JTextField ItemPrice;
+    private javax.swing.JTextField ItemTotal;
     private javax.swing.JButton Savebtn1;
     private javax.swing.JTable area;
     private javax.swing.JTable area2;
+    private javax.swing.JButton createitembtn;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -675,7 +819,13 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -687,3 +837,4 @@ public class InvoiceGUI extends javax.swing.JFrame {
     private javax.swing.JButton savefilebtn;
     // End of variables declaration//GEN-END:variables
 }
+

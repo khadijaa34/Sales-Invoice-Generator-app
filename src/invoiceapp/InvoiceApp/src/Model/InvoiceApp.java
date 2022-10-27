@@ -40,7 +40,7 @@ public class InvoiceApp {
         int subTotal;
         ArrayList<Invoice> list = new ArrayList<Invoice>();
         // 1st file //
-        File fHeader = new File("C:\\Users\\Dejaa\\Desktop\\head1.csv");
+        File fHeader = new File("C:\\Users\\Dejaa\\Desktop\\Sales Invoice Generator\\InvoiceHeader.csv");
         BufferedReader br = new BufferedReader(new FileReader(fHeader));
         
         //2 nd file //
@@ -86,7 +86,8 @@ public class InvoiceApp {
            {
                for(int i=0; i<data.size(); i++){
                    String line = Integer.toString(data.get(i).getId()) + "," + 
-                           data.get(i).getDate() + "," + data.get(i).getCustomerName() + String.format("%n");
+                    data.get(i).getDate() + "," + data.get(i).getCustomerName() 
+                    + String.format("%n");
                    fw.write(line );                   
                }
            }
@@ -95,6 +96,29 @@ public class InvoiceApp {
           System.out.println(e);
           }
     }
+    
+//    public static void ItemsData(ArrayList<Items> dataItems, String itemsFilePath){
+//        
+//         try{
+//           FileWriter fw = new FileWriter(itemsFilePath);
+//                      
+//           if (dataItems != null && dataItems.size() > 0)
+//           {
+//               for(int i=0; i<dataItems.size(); i++){
+//                   String line = Integer.toString(dataItems.get(i).getId()) + "," + 
+//                           dataItems.get(i).getItemName() + "," + dataItems.get(i).getPrice() + "," 
+//                           + dataItems.get(i).getCount() + "," + dataItems.get(i).getTotal() 
+//                           + String.format("%n");
+//                   fw.write(line );                   
+//               }
+//           }
+//           fw.close();
+//          }catch(Exception e){
+//          System.out.println(e);
+//          }
+//        
+// 
+//    }
     
     
     /////////////////////
